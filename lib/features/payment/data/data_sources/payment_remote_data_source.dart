@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../models/payment_model.dart';
@@ -10,7 +12,7 @@ abstract class PaymentRemoteDataSource {
     required String description,
     required double amount,
     required String category,
-    required File attachment,
+    required PlatformFile attachment,
   });
 }
 
@@ -24,7 +26,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
     required String description,
     required double amount,
     required String category,
-    required File attachment,
+    required PlatformFile attachment,
   }) async {
     try {
       // Use FormData to send multipart/form-data request
@@ -33,10 +35,11 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
         'amount': amount,
         'category': category,
         // Create a MultipartFile from the File object
-        'attachment': await MultipartFile.fromFile(
-          attachment.path,
-          filename: attachment.path.split('/').last,
-        ),
+        'attachment': kIsWeb
+        // For web, use fromBytes with the file's bytes
+            ? MultipartFile.fromBytes(attachment.bytes!, filename: attachment.name)
+        // For mobile, use fromFile with the file's path
+            : await MultipartFile.fromFile(attachment.path!, filename: attachment.name),
       });
 
       final response = await dio.post('/payments', data: formData);

@@ -14,14 +14,14 @@ import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/manager/auth_providers.dart';
 
 Future<void> main() async {
-  // 1. Ensure Flutter is ready.
+
   WidgetsFlutterBinding.ensureInitialized();
 
   if (kIsWeb) {
     databaseFactory = databaseFactoryFfiWeb;
   }
 
-  // 3. Initialize all async services BEFORE the app runs.
+
   final sharedPreferences = await SharedPreferences.getInstance();
   final database = await $FloorAppDatabase
       .databaseBuilder('app_database.db')
@@ -31,7 +31,7 @@ Future<void> main() async {
     ProviderScope(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
-        databaseProvider.overrideWithValue(database), // Override the database provider
+        databaseProvider.overrideWithValue(database),
       ],
       child: const MyApp(),
     ),

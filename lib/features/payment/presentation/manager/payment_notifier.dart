@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:diokotest/features/payment/presentation/manager/payment_state.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../dashboard/presentation/manager/dashboard_notifier.dart';
@@ -23,7 +24,7 @@ class PaymentNotifier extends StateNotifier<PaymentState> {
     required String description,
     required double amount,
     required String category,
-    required File attachment,
+    required PlatformFile attachment,
   }) async {
     state = PaymentLoading();
     final result = await _createPaymentUseCase(

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
+
 import '../../../../core/errors/failure.dart';
 import '../../../../core/utils/either.dart';
 import '../entities/payment_entity.dart';
@@ -13,6 +15,6 @@ abstract class PaymentRepository {
     required String description,
     required double amount,
     required String category,
-    required File attachment,
+    required PlatformFile attachment,
   });
 }

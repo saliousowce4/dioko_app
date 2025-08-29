@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,7 +23,7 @@ class _CreatePaymentBottomSheetState extends ConsumerState<CreatePaymentBottomSh
   final _descriptionController = TextEditingController();
   final _amountController = TextEditingController();
   String? _selectedCategory;
-  File? _selectedFile;
+  PlatformFile? _selectedFile;
 
   final List<String> _categories = ['Internet', 'Loyer', 'Électricité', 'Eau', 'Services Divers'];
 
@@ -37,11 +38,12 @@ class _CreatePaymentBottomSheetState extends ConsumerState<CreatePaymentBottomSh
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf', 'png', 'jpg'],
+      withData: kIsWeb, // Important: Tells file_picker to load bytes on web
     );
 
-    if (result != null && result.files.single.path != null) {
+    if (result != null) {
       setState(() {
-        _selectedFile = File(result.files.single.path!);
+        _selectedFile = result.files.first; // <-- Get the PlatformFile
       });
     }
   }

@@ -1,4 +1,5 @@
-import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
@@ -17,7 +18,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
     required String description,
     required double amount,
     required String category,
-    required File attachment,
+    required PlatformFile attachment,
   }) async {
     try {
       final paymentModel = await remoteDataSource.createPayment(
