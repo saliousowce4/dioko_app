@@ -45384,7 +45384,7 @@ A.kd.prototype={}
 A.vR.prototype={
 nd(a,b){var s=null,r=$.au(),q=new A.jQ(B.cx,r),p=new A.jQ(B.cx,r),o=new A.bg(s,t.am)
 b.pv($.k8(),new A.ady(a))
-return A.Sd(s,A.wN(!0,A.aFk(A.aEz(A.hI(A.b([new A.C8(A.aZ3(s,s,new A.zQ("assets/images/dioko_logo.png",s,s)),60,s),B.AI,B.Z8,B.is,new A.kk(q,"Votre email",new A.adz(),B.B2,!1,s),B.br,new A.kk(p,"Mot de passe",new A.adA(),B.fh,!0,s),B.it,A.aIR(new A.adB(o,q,p)),B.br,A.FT(B.Zd,new A.adC(a),s)],t.p),B.eo,B.eQ,B.as),o),B.et),!0))}}
+return A.Sd(s,A.wN(!0,A.aFk(A.aEz(A.hI(A.b([new A.C8(A.aZ3(s,s,new A.zQ("assets/images/dioko_logo.png",s,s)),90,s),B.AI,B.Z8,B.is,new A.kk(q,"Votre email",new A.adz(),B.B2,!1,s),B.br,new A.kk(p,"Mot de passe",new A.adA(),B.fh,!0,s),B.it,A.aIR(new A.adB(o,q,p)),B.br,A.FT(B.Zd,new A.adC(a),s)],t.p),B.eo,B.eQ,B.as),o),B.et),!0))}}
 A.ady.prototype={
 $2(a,b){var s=null
 if(b instanceof A.kd)this.a.am(t.Pu).f.pZ(A.anN(s,s,s,B.hT,s,B.F,s,A.cz(b.a,s,s,s,s,s,s),s,B.dt,s,s,s,s,s,s,s,s,s))},

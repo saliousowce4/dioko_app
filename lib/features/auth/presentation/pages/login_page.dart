@@ -41,7 +41,7 @@ class LoginPage extends ConsumerWidget {
                 // --- Logo ---
                 Image.asset(
                   'assets/images/dioko_logo.png', // Make sure this path is correct
-                  height: 60,
+                  height: 90,
                 ),
                 const SizedBox(height: 48),
 
