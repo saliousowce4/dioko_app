@@ -1,0 +1,6 @@
+services:
+  - type: static_site
+    name: dioko-app
+    env: flutter
+    buildCommand: flutter build web
+    publishPath: build/web
