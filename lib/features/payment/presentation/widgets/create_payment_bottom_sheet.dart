@@ -42,11 +42,26 @@ class _CreatePaymentBottomSheetState extends ConsumerState<CreatePaymentBottomSh
     );
 
     if (result != null) {
+      // ADD THESE DEBUG PRINTS:
+      print('File selected: ${result.files.first.name}');
+      print('File size: ${result.files.first.size}');
+      print('Bytes available: ${result.files.first.bytes != null}');
+      print('Path available: ${result.files.first.path != null}');
+      print('Is Web: $kIsWeb');
+      if (kIsWeb) {
+        print('Bytes length: ${result.files.first.bytes?.length}');
+      } else {
+        print('File path: ${result.files.first.path}');
+      }
+
       setState(() {
-        _selectedFile = result.files.first; // <-- Get the PlatformFile
+        _selectedFile = result.files.first;
       });
+    } else {
+      print('No file selected');
     }
   }
+
 
   void _submitPayment() {
     if (_formKey.currentState!.validate()) {
