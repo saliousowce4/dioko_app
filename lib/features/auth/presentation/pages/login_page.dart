@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -24,11 +23,9 @@ class LoginPage extends ConsumerWidget {
           SnackBar(content: Text(next.message), backgroundColor: Colors.red),
         );
       }
-      // The router handles successful navigation
     });
 
     return Scaffold(
-      // Use a SafeArea to avoid system UI (like notches)
       body: SafeArea(
         child: ResponsiveCenter(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -39,13 +36,9 @@ class LoginPage extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // --- Logo ---
-                Image.asset(
-                  'assets/images/dioko_logo.png', // Make sure this path is correct
-                  height: 90,
-                ),
+                Image.asset('assets/images/dioko_logo.png', height: 90),
                 const SizedBox(height: 48),
 
-                // --- Title ---
                 const Text(
                   'Se connecter',
                   textAlign: TextAlign.center,
@@ -53,23 +46,27 @@ class LoginPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
 
-                // --- Text Fields ---
                 CustomTextField(
                   controller: emailController,
                   labelText: 'Votre email',
                   keyboardType: TextInputType.emailAddress,
-                  validator: (value) => value!.isEmpty ? 'Veuillez entrer un email' : null,
+                  validator:
+                      (value) =>
+                          value!.isEmpty ? 'Veuillez entrer un email' : null,
                 ),
                 const SizedBox(height: 16),
                 CustomTextField(
                   controller: passwordController,
                   labelText: 'Mot de passe',
                   obscureText: true,
-                  validator: (value) => value!.isEmpty ? 'Veuillez entrer un mot de passe' : null,
+                  validator:
+                      (value) =>
+                          value!.isEmpty
+                              ? 'Veuillez entrer un mot de passe'
+                              : null,
                 ),
                 const SizedBox(height: 32),
 
-                // --- Button ---
                 Consumer(
                   builder: (context, ref, child) {
                     final authState = ref.watch(authNotifierProvider);
@@ -78,10 +75,12 @@ class LoginPage extends ConsumerWidget {
                       isLoading: authState is AuthLoading,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          ref.read(authNotifierProvider.notifier).login(
-                            emailController.text.trim(),
-                            passwordController.text.trim(),
-                          );
+                          ref
+                              .read(authNotifierProvider.notifier)
+                              .login(
+                                emailController.text.trim(),
+                                passwordController.text.trim(),
+                              );
                         }
                       },
                     );
@@ -89,7 +88,6 @@ class LoginPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
 
-                // --- Link to Register Page ---
                 TextButton(
                   onPressed: () => context.go('/register'),
                   child: const Text('Pas de compte ? Créer un compte'),

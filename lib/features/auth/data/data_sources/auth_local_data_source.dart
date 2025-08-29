@@ -33,7 +33,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<void> cacheToken(String token) {
     try {
-      print('AuthLocalDataSource: Caching token: $token');
       return sharedPreferences.setString(CACHED_AUTH_TOKEN, token);
     } catch (e) {
       throw CacheException('Failed to cache token');
@@ -42,7 +41,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
   @override
   Future<String> getToken() {
-    print('AuthLocalDataSource: Attempting to get token.');
     final token = sharedPreferences.getString(CACHED_AUTH_TOKEN);
     if (token != null) {
       return Future.value(token);
