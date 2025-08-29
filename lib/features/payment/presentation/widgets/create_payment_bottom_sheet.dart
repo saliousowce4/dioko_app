@@ -67,7 +67,7 @@ class _CreatePaymentBottomSheetState extends ConsumerState<CreatePaymentBottomSh
     if (_formKey.currentState!.validate()) {
       if (_selectedFile == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please attach a receipt'), backgroundColor: Colors.orange),
+          const SnackBar(content: Text('Veuillez joindre un fichier'), backgroundColor: Colors.orange),
         );
         return;
       }
@@ -114,31 +114,31 @@ class _CreatePaymentBottomSheetState extends ConsumerState<CreatePaymentBottomSh
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('New Payment', style: Theme.of(context).textTheme.titleLarge),
+                  Text('Faire un paiement', style: Theme.of(context).textTheme.titleLarge),
                   IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.of(context).pop()),
                 ],
               ),
               const SizedBox(height: 16),
               CustomTextField(
                 controller: _descriptionController,
-                labelText: 'Description (e.g., Internet bill for August)',
-                validator: (value) => value!.isEmpty ? 'Please enter a description' : null,
+                labelText: 'Description (ex, Facture Internet Juillet)',
+                validator: (value) => value!.isEmpty ? 'Veuillez entrer une description' : null,
               ),
               const SizedBox(height: 16),
               CustomTextField(
                 controller: _amountController,
-                labelText: 'Amount',
+                labelText: 'Montant',
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if (value!.isEmpty) return 'Please enter an amount';
-                  if (double.tryParse(value) == null) return 'Please enter a valid number';
+                  if (value!.isEmpty) return 'Entrez un montant';
+                  if (double.tryParse(value) == null) return 'Entrez un montant valide';
                   return null;
                 },
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _selectedCategory,
-                hint: const Text('Select Category'),
+                hint: const Text('Catégorie'),
                 items: _categories.map((String category) {
                   return DropdownMenuItem<String>(value: category, child: Text(category));
                 }).toList(),
@@ -149,13 +149,13 @@ class _CreatePaymentBottomSheetState extends ConsumerState<CreatePaymentBottomSh
               const SizedBox(height: 16),
               OutlinedButton.icon(
                 icon: const Icon(Icons.attach_file),
-                label: Text(_selectedFile == null ? 'Attach Receipt (PDF, JPG)' : 'File attached!'),
+                label: Text(_selectedFile == null ? 'Joindre (PDF, JPG)' : 'Fichier joint!'),
                 onPressed: _pickFile,
                 style: OutlinedButton.styleFrom(minimumSize: const Size(double.infinity, 50)),
               ),
               const SizedBox(height: 24),
               PrimaryButton(
-                text: 'Submit Payment',
+                text: 'Payer',
                 onPressed: _submitPayment,
                 isLoading: isLoading,
               ),

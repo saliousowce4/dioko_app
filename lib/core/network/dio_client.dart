@@ -36,7 +36,6 @@ class AuthInterceptor extends Interceptor {
   ) async {
     // These paths do not require a token.
     if (options.path == '/login' || options.path == '/register') {
-      print('AuthInterceptor: No token needed for ${options.path}');
       return super.onRequest(options, handler);
     }
 
@@ -45,7 +44,6 @@ class AuthInterceptor extends Interceptor {
       final localDataSource = _ref.read(authLocalDataSourceProvider);
       final token = await localDataSource.getToken();
       options.headers['Authorization'] = 'Bearer $token';
-      print('AuthInterceptor: Token successfully added for ${options.path}');
     } catch (e) {
       // If no token is found, the request will proceed without it,
       // and the API will return a 401 Unauthorized, which we can handle.

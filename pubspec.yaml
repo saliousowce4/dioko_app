@@ -39,6 +39,7 @@ dependencies:
   file_picker: ^10.3.2
   sqflite: ^2.3.0  # your existing sqflite version
   sqflite_common_ffi_web: ^0.4.3+1  # Add this line
+  google_fonts: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -51,5 +52,6 @@ dev_dependencies:
 
 
 flutter:
-
   uses-material-design: true
+  assets:
+    - assets/images/
